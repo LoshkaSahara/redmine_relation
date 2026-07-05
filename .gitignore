@@ -3,3 +3,7 @@ env/
 __pycache__/
 .env
 settings.ini
+app.ico
+/build
+/dist
+/main.spec

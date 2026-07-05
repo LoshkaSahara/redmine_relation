@@ -3,6 +3,8 @@ import os
 from urllib.parse import urlparse
 import configparser
 
+# Создаём объект ConfigParser
+config = configparser.ConfigParser()
 
 # Просим пользователя ввести данные и создаём файл с этими данными
 if not (os.path.exists("settings.ini")):
@@ -16,10 +18,7 @@ if not (os.path.exists("settings.ini")):
     server_protocol = parsed_url.scheme
     server_domain = parsed_url.netloc
 
-    # 1. Создаём объект ConfigParser
-    config = configparser.ConfigParser()
-
-    # 2. Добавляем секции и данные
+    # Добавляем секции и данные
 
     config['SETTINGS'] = {
         # 'server_protocol': server_protocol,
@@ -49,7 +48,7 @@ headers = {
 idFrom = int(
     input("Введите ID задачи, из которой хотите скопировать все связанные задачи: "))
 idTo = int(input(
-    "Введите ID задачи в которую Вы хотите скопировать все связанные задачи: "))
+    "Введите ID задачи в которую хотите скопировать все связанные задачи: "))
 
 
 # Получение всех связанных задач из --idFrom--
@@ -79,3 +78,8 @@ for target_id in issuesId:
                                  json=payload)
     print(f"Статус код: {responsePost.status_code}")
     print(f"Полученный ответ POST запроса: {responsePost.text}")
+    
+    
+print("=" * 120)
+print("Связывание задач закончено!")
+input("Нажмите Enter для закрытия:")
